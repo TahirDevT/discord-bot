@@ -7,6 +7,8 @@ use serenity::model::colour::Colour;
 use serenity::model::id::ChannelId;
 use serenity::prelude::*;
 
+use axum::{routing::get, Router};
+
 struct Handler;
 
 #[async_trait]
@@ -95,6 +97,15 @@ async fn main() {
 
     let mut client =
         Client::builder(&token, intents).event_handler(Handler).await.expect("Error creating client");
+
+    let app = Router::new().route("/", get(|| async { "OK" }));
+
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8000").await.unwrap();
+    println!("Web server listening on port 8000");
+
+    tokio::spawn(async move {
+        axum::serve(listener, app).await.unwrap();
+    });
 
     if let Err(why) = client.start().await {
         println!("Client error: {why:?}");
