@@ -1,11 +1,11 @@
 services:
   - type: worker
     name: discord-bot
-    env: docker
-    repo: https://github.com/TahirDevT/discord-bot.git # Make sure this is your repo
-    branch: master # Explicitly set the branch
+    env: rust # <-- Tell Render to use its native Rust environment
+    repo: https://github.com/TahirDevT/discord-bot.git
+    branch: master
     region: oregon # Or your chosen region
     plan: free
-    healthCheck:
-      path: /
+    buildCommand: cargo build --release # <-- Command to build your project
+    startCommand: ./target/release/your_bot_name # <-- Command to start your bot
     autoDeploy: true
