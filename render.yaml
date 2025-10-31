@@ -1,0 +1,10 @@
+services:
+  - type: web # A "web service" runs 24/7 on Render
+    name: discord-bot # A name for your service
+    env: docker # Tell Render we are using Docker
+    repo: https://github.com/TahirDevT/discord-bot.git # <-- CHANGE THIS to your repo URL
+    region: oregon # Or a region closer to you
+    plan: free # Use the free tier
+    healthCheck:
+      path: / # This is required but won't be used by a bot
+    autoDeploy: true # Automatically deploy when you push to GitHub
