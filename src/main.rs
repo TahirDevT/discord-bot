@@ -39,11 +39,27 @@ impl EventHandler for Handler {
             }
 
             if should_react {
-                for emoji in ['👍', '👎'] {
-                    if let Err(why) = message.react(&context.http, emoji).await {
-                        println!("Error reacting to message: {why:?}");
-                    }
-                } 
+                let upvote_id = EmojiId::new(1434250682126569532);
+                let downvote_id = EmojiId::new(1434250956429725786);
+
+                let upvote_reaction = ReactionType::Custom {
+                    animated: false,
+                    id: upvote_id,
+                    name: Some("upvote".to_string()),
+                };
+
+                let downvote_reaction = ReactionType::Custom {
+                    animated: false,
+                    id: downvote_id,
+                    name: Some("downvote".to_string()),
+                };
+
+                if let Err(why) = message.react(&context.http, upvote_reaction).await {
+                    println!("Error reacting to message: {why:?}");
+                }
+                if let Err(why) = message.react(&context.http, downvote_reaction).await {
+                    println!("Error reacting to message: {why:?}");
+                }
             }
         }
     }
