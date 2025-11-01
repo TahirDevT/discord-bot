@@ -7,7 +7,7 @@ services:
     region: oregon
     plan: free
     buildCommand: cargo build --release
-    startCommand: ./target/release/your_bot_name
+    startCommand: cargo run --release
     healthCheck:
         path: /
     autoDeploy: true
