@@ -52,7 +52,7 @@ impl EventHandler for Handler {
         let channel_id = ChannelId::new(1411337104042233908);
         let embed = CreateEmbed::new()
             .title(format!("{}", member.user.name))
-            .description(format!("Just joined **Tahir's Tactical Crew**!\nThere are now **{}** members.", ctx.cache.user_count()))
+            .description(format!("Just joined **Project ShatterPoint 9**!\nThere are now **{}** members.", ctx.cache.guild(member.guild_id).map_or(0, |g| g.member_count)))
             .colour(Colour::from_rgb(77, 255, 122))
             .thumbnail(member.user.face());
 
@@ -70,7 +70,7 @@ impl EventHandler for Handler {
         let channel_id = ChannelId::new(1411337104042233908);
         let embed = CreateEmbed::new()
             .title(format!("{}", user.name))
-            .description(format!("Just left **Tahir's Tactical Crew**.\nThere are now **{}** members.", ctx.cache.user_count()))
+            .description(format!("Just left **Project ShatterPoint 9**.\nThere are now **{}** members.", ctx.cache.guild(_guild_id).map_or(0, |g| g.member_count)))
             .colour(Colour::from_rgb(255, 35, 35))
             .thumbnail(user.face());
 
