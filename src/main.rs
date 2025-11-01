@@ -2,7 +2,7 @@ use std::env;
 
 use serenity::async_trait;
 use serenity::model::channel::Message;
-use serenity::all::{CreateEmbed, CreateMessage, GuildId, Member, User};
+use serenity::all::{CreateEmbed, CreateMessage, GuildId, Member, User, EmojiId, ReactionType};
 use serenity::model::colour::Colour;
 use serenity::model::id::ChannelId;
 use serenity::prelude::*;
